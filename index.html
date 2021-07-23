@@ -6,17 +6,17 @@
 
     <title>Body Mass Index Monitor</title>
 
-    <!--Adjusting the page on mobile screen-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
+  <!--Adjusting the page on mobile screen  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
 
-    <!--CSS-->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
-
-
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css"
+  />
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="scripts/jquery-1.9.1.min.js"></script>
+  <script src="scripts/chromeFileProtocolFix.js"></script>
+  <script src="scripts/jquery.mobile-1.3.1.min.js"></script>
 </head>
 
 <body>
@@ -29,8 +29,7 @@
             Password : <input type="password" id="passcode">
 
             <div data-role="controlgroup" id="numKeyPad">
-                <!--Currently the password is not functional, so for the time being it just moves you along in the app to the legalNotice page-->
-                <a href="#legalNotice" data-role="button" id="btnEnter" type="submit">Enter</a>
+                <a data-role="button" id="btnEnter" type="submit">Enter</a>
                 <a href="#pageAbout" data-role="button">About</a>
             </div>
             <div data-role="controlgroup" data-type="horizontal">
@@ -39,14 +38,14 @@
                 <a data-role="button" onclick="addValueToPassword(9)">9</a>
             </div>
             <div data-role="controlgroup" data-type="horizontal">
-                <a data-role="button" onclick="addValueToPassword(7)">4</a>
-                <a data-role="button" onclick="addValueToPassword(8)">5</a>
-                <a data-role="button" onclick="addValueToPassword(9)">6</a>
+                <a data-role="button" onclick="addValueToPassword(4)">4</a>
+                <a data-role="button" onclick="addValueToPassword(5)">5</a>
+                <a data-role="button" onclick="addValueToPassword(6)">6</a>
             </div>
             <div data-role="controlgroup" data-type="horizontal">
-                <a data-role="button" onclick="addValueToPassword(7)">1</a>
-                <a data-role="button" onclick="addValueToPassword(8)">2</a>
-                <a data-role="button" onclick="addValueToPassword(9)">3</a>
+                <a data-role="button" onclick="addValueToPassword(1)">1</a>
+                <a data-role="button" onclick="addValueToPassword(2)">2</a>
+                <a data-role="button" onclick="addValueToPassword(3)">3</a>
             </div>
             <div data-role="controlgroup" data-type="horizontal">
                 <a data-role="button" onclick="addValueToPassword(0)">0</a>
@@ -77,6 +76,8 @@
         </div>
     </div>
 
+
+
     <!--User Info Section-->
     <div data-role="page" id="pageUserInfo">
         <div data-role="header">
@@ -105,6 +106,7 @@
                         <label for="txtHealthCardNumber">Health Card Number: </label>
                         <input type="text" placeholder="Health Card Number" name="txtHealthCardNumber" data-mini="false" id="txtHealthCardNumber" value="" required>
                     </div>
+                    <input type="submit" id="btnUserUpdate" data-icon="check" data-iconpos="left" value="Update" data-inline="true">
                 </form>
             </div>
         </div>
@@ -175,10 +177,14 @@
                         <input type="number" step=".01" placeholder="0" name="txtHeight" data-mini="false" id="txtHeight" value="">
                     </div>
                 </div>
-                <input type="submit" id="btnSubmitRecord" value="Add">
+                <input type="submit" id="btnSubmitRecord" value="">
             </form>
         </div>
     </div>
+
+
+
+
 
     <!--Graph Page-->
     <div data-role="page" id="pageGraph" class="test">
@@ -210,7 +216,12 @@
         </div>
     </div>
 
-
+    <script src="scripts/UserForm.js"></script>
+    <script src="scripts/Table.js"></script>
+    <script src="scripts/Navigation.js"></script>
+    <script src="scripts/Advice.js"></script>
+    <script src="scripts/GraphAnimate.js"></script>
+    <script src="scripts/pageLoader.js"></script>
 </body>
 
 </html>
