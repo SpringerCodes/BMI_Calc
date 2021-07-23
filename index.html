@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <title>Body Mass Index Monitor</title>
+
+    <!--Adjusting the page on mobile screen-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+
+
+</head>
+
+<body>
+    <!--landing page with password-->
+    <div data-role="page" id="pageHome">
+        <div data-role="header">
+            <h1>Body Mass Index Monitor</h1>
+        </div>
+        <div data-role="content">
+            Password : <input type="password" id="passcode">
+
+            <div data-role="controlgroup" id="numKeyPad">
+                <!--Currently the password is not functional, so for the time being it just moves you along in the app to the legalNotice page-->
+                <a href="#legalNotice" data-role="button" id="btnEnter" type="submit">Enter</a>
+                <a href="#pageAbout" data-role="button">About</a>
+            </div>
+            <div data-role="controlgroup" data-type="horizontal">
+                <a data-role="button" onclick="addValueToPassword(7)">7</a>
+                <a data-role="button" onclick="addValueToPassword(8)">8</a>
+                <a data-role="button" onclick="addValueToPassword(9)">9</a>
+            </div>
+            <div data-role="controlgroup" data-type="horizontal">
+                <a data-role="button" onclick="addValueToPassword(7)">4</a>
+                <a data-role="button" onclick="addValueToPassword(8)">5</a>
+                <a data-role="button" onclick="addValueToPassword(9)">6</a>
+            </div>
+            <div data-role="controlgroup" data-type="horizontal">
+                <a data-role="button" onclick="addValueToPassword(7)">1</a>
+                <a data-role="button" onclick="addValueToPassword(8)">2</a>
+                <a data-role="button" onclick="addValueToPassword(9)">3</a>
+            </div>
+            <div data-role="controlgroup" data-type="horizontal">
+                <a data-role="button" onclick="addValueToPassword(0)">0</a>
+                <a data-role="button" onclick="addValueToPassword('bksp')" data-icon="delete">del</a>
+            </div>
+        </div>
+    </div>
+
+    <!--Disclaimer Page-->
+    <div data-role="page" id="legalNotice" data-close-btn="none">
+        <div data-role="header">
+            <h1>Disclaimer</h1>
+        </div>
+        <div data-role="content">[Insert disclaimer text here]
+            <br>
+            <a href="#pageUserInfo" id="noticeYes" data-role="button" data-icon="forward" data-mini="false">Yes</a>
+        </div>
+    </div>
+
+    <!--About section-->
+    <div data-role="page" id="pageAbout">
+        <div data-role="header">
+            <a href="#pageHome" data-role="button" data-icon="bars" data-iconpos="left">Home</a>
+            <h1>Info</h1>
+        </div>
+        <div data-role="content">
+            [helpful information bout the app]
+        </div>
+    </div>
+
+    <!--User Info Section-->
+    <div data-role="page" id="pageUserInfo">
+        <div data-role="header">
+            <a href="#pageMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>
+            <a href="#pageAbout" data-role="button" data-icon="info" data-iconpos="right" data-inline="true">Info</a>
+            <h1>User Information</h1>
+            <div data-role="content">
+                <form id="frmUserForm" action="">
+                    <div data-role="fieldcontain">
+                        <label for="txtFirstName">First Name: </label>
+                        <input type="text" placeholder="First Name" name="txtFirstName" data-mini="false" id="txtFirstName" value="" required>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="txtLastName">Last Name: </label>
+                        <input type="text" placeholder="Last Name" name="txtLastName" data-mini="false" id="txtLastName" value="" required>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="datBirthdate">Birthdate: </label>
+                        <input type="date" name="datBirthdate" data-mini="false" id="datBirthdate" value="" required>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="changePassword">Edit Password: </label>
+                        <input type="password" placeholder="New Password" name="changePassword" data-mini="false" id="changePassword" value="" required>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="txtHealthCardNumber">Health Card Number: </label>
+                        <input type="text" placeholder="Health Card Number" name="txtHealthCardNumber" data-mini="false" id="txtHealthCardNumber" value="" required>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Menu Page-->
+    <div data-role="page" id="pageMenu">
+        <div data-role="header">
+            <a href="#pageMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>
+            <a href="#pageAbout" data-role="button" data-icon="info" data-iconpos="right" data-inline="true">Info</a>
+            <h1>Body Mass Index Monitor</h1>
+        </div>
+        <div data-role="content">
+            <div data-role="controlgroup">
+                <a href="#pageUserInfo" data-role="button">User Info</a>
+                <a href="#pageRecords" data-role="button">Records</a>
+                <a href="#pageGraph" data-role="button">Graph</a>
+                <a href="#pageAdvice" data-role="button">Advice</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Records Page-->
+    <div data-role="page" id="pageRecords">
+        <div data-role="header">
+            <a href="#pageMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>
+            <a href="#pageAbout" data-role="button" data-icon="info" data-iconpos="right" data-inline="true">Info</a>
+            <h1>Records</h1>
+        </div>
+        <div data-role="content">
+            <!--User Information Section-->
+            <div data-role="fieldcontain" id="divUserSection">
+            </div>
+            <h3 align="center">History</h3>
+            <div data-role="fieldcontain">
+                <!--Records Table-->
+                <table id="tblRecords" class="ui-responsive table-stroke">
+                </table>
+            </div>
+            <div data-role="fieldcontain">
+                <a href="#pageNewRecordForm" id="btnAddRecord" data-role="button" data-icon="plus">Add New Entry</a>
+                <a href="#" id="btnClearHistory" data-role="button" data-icon="delete">Clear History</a>
+            </div>
+        </div>
+    </div>
+
+    <!--New Record Form Page-->
+    <div data-role="page" id="pageNewRecordForm">
+        <div data-role="header">
+            <a href="#pageMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>
+            <a href="#pageAbout" data-role="button" data-icon="info" data-iconpos="right" data-inline="true">Info</a>
+            <h1>New Record</h1>
+        </div>
+        <div data-role="content">
+            <form id="frmNewRecordForm" action="">
+                <div data-role="fieldcontain">
+                    <div data-role="fieldcontain">
+                        <label for="datExamDate">Date: </label>
+                        <input type="date" name="datExamDate" data-mini="false" id="datExamDate" value="">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="txtWeight">Weight in kg.:</label>
+                        <input type="number" step=".1" placeholder="0" name="txtWeight" data-mini="false" id="txtWeight" value="">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="txtHeight">Height in meters:</label>
+                        <input type="number" step=".01" placeholder="0" name="txtHeight" data-mini="false" id="txtHeight" value="">
+                    </div>
+                </div>
+                <input type="submit" id="btnSubmitRecord" value="Add">
+            </form>
+        </div>
+    </div>
+
+    <!--Graph Page-->
+    <div data-role="page" id="pageGraph" class="test">
+        <div data-role="header">
+            <a href="#pageMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>
+            <a href="#pageAbout" data-role="button" data-icon="info" data-iconpos="right" data-inline="true">Info</a>
+            <h1>Analyze</h1>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">BMI vs Date</h3>
+            </div>
+            <div class="panel-body" style="padding-left: 1px;">
+                <canvas id="GraphCanvas" width="500" height="500" style="border:1px solid #000000 ;">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    <!--Advice Page-->
+    <div data-role="page" id="pageAdvice" class="test">
+        <div data-role="header">
+            <a href="#pageMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>
+            <a href="#pageAbout" data-role="button" data-icon="info" data-iconpos="right" data-inline="true">Info</a>
+            <h1>Suggestions</h1>
+        </div>
+        <div data-role="content">
+            <canvas id="AdviceCanvas" width="550" height="550" style="border:1px solid #000000;"></canvas>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
