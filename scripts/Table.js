@@ -18,7 +18,7 @@ $("#btnAddRecord").on("click", function () {
 });
 
 $("#frmNewRecordForm").on("submit", function () {
-    console.log("test 2");
+    
     var formOperation = $("#btnSubmitRecord").val();
     
     if (formOperation == "Add") {
@@ -206,7 +206,6 @@ function checkRecordForm() {
 }
 
 function callEdit(index) {
-    console.log("DEBUG CALL EDIT");
     $("#btnSubmitRecord").attr("indexToEdit",
         index);
     /*.button("refresh") function forces jQuery
@@ -218,7 +217,6 @@ function callEdit(index) {
 
 //delete the given index and redisplay the table
 function callDelete(index) {
-    console.log("DEBUG CALL DELETE");
     deleteRecord(index);
     listRecords();
 }
@@ -303,7 +301,8 @@ function editRecord(index) {
             tbRecords[index] = {
                 "Date": $('#datExamDate').val(),
                 "Weight": $('#txtWeight').val(),
-                "Height": $('#txtHeight').val()
+                "Height": $('#txtHeight').val(),
+                "BMI": (($('#txtWeight').val() / (Math.pow($('#txtHeight').val(), 2))).toFixed(2)) 
 
             }; //alter the selected items in the array
             localStorage.setItem("tbRecords", JSON.stringify(tbRecords)); //saving array to local storage
