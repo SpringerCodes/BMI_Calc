@@ -1,5 +1,5 @@
 //removes all record data from localStorage
-$("#btnClearHistory").click(function () {
+$("#btnClearHistory").on("click", function () {
     localStorage.removeItem("tbRecords");
     listRecords();
     alert("All records have been deleted");
@@ -8,7 +8,7 @@ $("#btnClearHistory").click(function () {
 
 /* The value of the submit record button is used
 to determine which operation should be performed */
-$("#btnAddRecord").click(function () {
+$("#btnAddRecord").on("click", function () {
     /*.button("refresh) function forces jQuery
     mobile to refresh the text on the button */
     $("#btnSubmitRecord").val("Add");
@@ -17,9 +17,10 @@ $("#btnAddRecord").click(function () {
     }
 });
 
-$("#frmNewRecordForm").submit(function () {
+$("#frmNewRecordForm").on("submit", function () {
+    console.log("test 2");
     var formOperation = $("#btnSubmitRecord").val();
-
+    
     if (formOperation == "Add") {
         addRecord();
         $.mobile.changePage("#pageRecords");
@@ -135,7 +136,8 @@ function listRecords() {
             "      <th><abbr title='Body Mass Index'>BMI</abbr></th>" +
             "      <th>Weight</th>" +
             "      <th>Height</th>" +
-            "      <th>Edit / Delete</th>" +
+            "      <th>Edit</th>" +
+            "      <th>Delete</th>" +
             "   </tr>" +
             "</thead>" +
             "<tbody>" +
@@ -147,20 +149,19 @@ function listRecords() {
             var rec = tbRecords[i];
             $("#tblRecords tbody").append("<tr>" +
                 "<td>" + rec.Date + "</td>" +
-                "<td>" + (rec.Weight / (Math.pow(rec.Height, 2))).toFixed(2) + "</td>" +            
+                "<td>" + rec.BMI + "</td>" +
                 "<td>" + rec.Weight + "</td>" +
                 "<td>" + rec.Height + "</td>" +
-                "</td>" +"<td><a data-inline='true' data-mini='true' data-role='button' href='#pageNewRecordForm' onclick='callEdit("+i+")' data-icon='edit' data-iconpos='notext'></a>" +
-        "  <a data-inline='true'  data-mini='true' data-role='button' href='#' onclick='callDelete("+i+")' data-icon='delete' data-iconpos='notext'></a></td>" +
-        "</tr>");
-                                          
+                "<td><a href='#pageNewRecordForm' class='ui-btn ui-corner-all ui-shadow ui-mini ui-btn-icon-notext ui-icon-edit'  onclick='callEdit(" + i + ")'></a></td>" +
+                "<td><a href='#'class='ui-btn ui-corner-all ui-shadow ui-mini ui-btn-icon-notext ui-icon-delete'  onclick='callDelete(" + i + ")'></a></td>" +
+                "</tr>");
+
         }
-    $('#tblRecords [data-role="button"]').button(); // 'Refresh' the buttons. Without this the delete/edit buttons wont appear
-  } else {
-    tbRecords = []; //If there is no data,set an empty array
-    $("#tblRecords").html("");
-  }
-  return true;
+    } else {
+        tbRecords = []; //If there is no data,set an empty array
+        $("#tblRecords").html("");
+    }
+    return true;
 }
 
 function showRecordForm(index) {
@@ -206,13 +207,13 @@ function checkRecordForm() {
 
 function callEdit(index) {
     console.log("DEBUG CALL EDIT");
-  $("#btnSubmitRecord").attr("indexToEdit",
-    index);
-  /*.button("refresh") function forces jQuery
-   * Mobile to refresh the text on the button
-   */
-  $("#btnSubmitRecord").val("Edit").button(
-    "refresh");
+    $("#btnSubmitRecord").attr("indexToEdit",
+        index);
+    /*.button("refresh") function forces jQuery
+     * Mobile to refresh the text on the button
+     */
+    $("#btnSubmitRecord").val("Edit").button(
+        "refresh");
 }
 
 //delete the given index and redisplay the table
@@ -222,12 +223,14 @@ function callDelete(index) {
     listRecords();
 }
 
+
 function addRecord() {
     if (checkRecordForm()) {
         var record = {
             "Date": $('#datExamDate').val(),
             "Weight": $('#txtWeight').val(),
-            "Height": $('#txtHeight').val()
+            "Height": $('#txtHeight').val(),
+            "BMI": (($('#txtWeight').val() / (Math.pow($('#txtHeight').val(), 2))).toFixed(2))
         };
 
         try {
@@ -294,6 +297,7 @@ function deleteRecord(index) {
 
 function editRecord(index) {
     if (checkRecordForm()) {
+        
         try {
             var tbRecords = JSON.parse(localStorage.getItem("tbRecords"));
             tbRecords[index] = {

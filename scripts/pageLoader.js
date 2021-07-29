@@ -10,7 +10,7 @@ function resizeGraph() {
 }
 
 // Attach event handler for window resizing event
-$(window).resize(function () {
+$(window).on("click",function () {
   resizeGraph();
 });
 

@@ -30,7 +30,7 @@ function getPassword() {
  * have not yet agreed to it, or user entry page
  * if they have not yet completed their user info.
  */
-$("#btnEnter").click(function () {
+$("#btnEnter").on("click",function () {
     var password = getPassword();
 
     if (document.getElementById("passcode").value ==
@@ -63,7 +63,7 @@ $("#btnEnter").click(function () {
 /* Records that the user has agreed to the legal
  * disclaimer on this device/browser
  */
-$("#noticeYes").click(function () {
+$("#noticeYes").on("click",function () {
     localStorage.setItem("agreedToLegal",
         "true");
 });

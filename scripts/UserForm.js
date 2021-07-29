@@ -1,8 +1,8 @@
-$("#btnUserClear").click(function () {
+$("#btnUserClear").on("click", function () {
   clearUserForm();
 });
 
-$("#frmUserForm").submit(function () { //Event : submitting the form
+$("#frmUserForm").on("submit",function () { //Event : submitting the form
   saveUserForm();
   return true;
 });
@@ -70,7 +70,7 @@ function saveUserForm() {
 
 }
 
-function clearUserForm() { ///DEBUG What is this?
+/*function clearUserForm() { ///DEBUG What is this?
   localStorage.removeItem("user");
   alert("The stored data have been removed");
   $("#slcCancerStage").val(
@@ -82,7 +82,7 @@ function clearUserForm() { ///DEBUG What is this?
     true);
   $("#slcTSHRange").val("Select TSH Range");
   $('#slcTSHRange').selectmenu('refresh', true);
-}
+}*/
 
 function showUserForm() {
     //local the stored values in the form
